@@ -1,0 +1,18 @@
+{
+  "GRCA": {
+    "URL": "https://www.grcacamping.ca/Web/Customers/Login.aspx",
+    "EMAIL": "",
+    "PASSWORD": ""
+  },
+  "NOTIFICATION": {
+    "OUTGOING": {
+      "EMAIL": [
+        ""
+      ]
+    },
+    "TRANSPORT": {
+      "EMAIL": "",
+      "PASSWORD": ""
+    }
+  }
+}
