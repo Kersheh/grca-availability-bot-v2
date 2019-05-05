@@ -19,8 +19,6 @@ WORKDIR /usr/grca-bot
 COPY package*.json ./
 RUN npm install
 
-COPY config ./config/
-COPY email.js ./
-COPY index.js ./
+COPY src ./src/
 
-CMD [ "node", "./index.js" ]
+CMD [ "node", "./src/index.js" ]
