@@ -13,7 +13,7 @@ const smtpTransport = nodemailer.createTransport({
   }
 });
 
-function buildEmail(results) {
+function _buildEmail(results) {
   let html = '<b>Newly Available GRCA Sites:</b><br>';
   results.forEach(result => {
     const item = `✓ ${result}<br>`;
@@ -24,7 +24,7 @@ function buildEmail(results) {
 }
 
 function _send(results, email) {
-  const emailBody = buildEmail(results);
+  const emailBody = _buildEmail(results);
   const mailOptions = {
     from: EMAIL_FROM,
     to: email,
@@ -65,9 +65,7 @@ function sendAll(results) {
 // this test is required to ensure gmail hasn't blocked nodemailer from wherever this is deployed
 function sendTest() {
   const emailArray = CONFIG.NOTIFICATION.OUTGOING.EMAIL;
-
-  // fire single test email, not all recipients need to be tested
-  return _sendTest(emailArray[0]);
+  return _sendTest(emailArray[0]); // fire single test email, not all recipients need to be tested
 }
 
 module.exports = {

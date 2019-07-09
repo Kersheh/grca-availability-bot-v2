@@ -7,6 +7,9 @@ const config = nconf.file({ file: `${__dirname}/config/config.json` });
 const DEBUG = false;
 const DELAY = 1000;
 
+const CAMP_LOCATIONS_REGEX = /(lakeview|lookout point|sandy bay|hillcrest|sunrise)/gi;
+// const CAMP_LOCATIONS_REGEX = /(driftwood|hillcrest|lakeview|lookout point|lower parkside|meadowvale|sandy bay|sunrise|upper parkside)/gi;
+
 async function executePuppeteerBot() {
   const browser = await puppeteer.launch({
     args: ['--no-sandbox'],
@@ -59,7 +62,6 @@ async function executePuppeteerBot() {
 }
 
 function emailAvailableSites(innerHTML) {
-  const CAMP_LOCATIONS_REGEX = /(lakeview|lookout point|sandy bay)/gi;
   let availableSites = [];
 
   innerHTML.replace(CAMP_LOCATIONS_REGEX, (match, site) => {
@@ -76,10 +78,10 @@ function emailAvailableSites(innerHTML) {
   }
 }
 
+// fetch search result html page
 (async () => {
-  // fetch search result html page
   try {
-    // await email.sendTest();
+    await email.sendTest();
     const innerHTML = await executePuppeteerBot();
     emailAvailableSites(innerHTML);
   } catch(err) {
